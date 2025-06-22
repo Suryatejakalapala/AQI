@@ -4,7 +4,7 @@ from datetime import datetime , timedelta , timezone
 import os
 
 API_KEY = os.getenv("AQI_API_KEY")
-CITY = 'Coventry'
+CITY = 'Delhi'
 
 
 def fetch_data():
