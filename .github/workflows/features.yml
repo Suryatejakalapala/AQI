@@ -1,4 +1,4 @@
-name: Fetch Features Hourly
+name: Fetch AQI Features
 
 on:
   schedule:
@@ -6,15 +6,29 @@ on:
   workflow_dispatch:
 
 jobs:
-  run-feature-pipeline:
+  fetch-features:
     runs-on: ubuntu-latest
+    env:
+      AQI_API_KEY: ${{ secrets.AQI_API_KEY }}
+
     steps:
       - uses: actions/checkout@v3
-      - name: Setup Python
+
+      - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.9
+          python-version: '3.9'
+
       - name: Install dependencies
         run: pip install -r requirements.txt
+
       - name: Run feature script
         run: python fetch_features.py
+
+      - name: Commit updated CSV
+        run: |
+          git config user.name "suryatejakalapala"
+          git config user.email "kalavensut03@gmail.com@"
+          git add features/aqi_features.csv
+          git commit -m "🔄 Update AQI features" || echo "No changes"
+          git push

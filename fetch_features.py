@@ -1,9 +1,10 @@
 import requests 
 import pandas as pd
 from datetime import datetime , timedelta , timezone
+import os
 
-API_KEY = '43bfc1a5989b54056ba45ab30cbda204'
-CITY = 'LONDON'
+API_KEY = os.getenv("AQI_API_KEY")
+CITY = 'Coventry'
 
 
 def fetch_data():
