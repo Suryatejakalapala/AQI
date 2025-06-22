@@ -31,7 +31,7 @@ jobs:
       - name: Commit updated CSV
         run: |
           git config user.name "suryatejakalapala"
-          git config user.email "kalavensut03@gmail.com@"
+          git config user.email "kalavensut03@gmail.com"
           git add features/aqi_features.csv
           git commit -m "🔄 Update AQI features" || echo "No changes"
           git push
